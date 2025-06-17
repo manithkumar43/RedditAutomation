@@ -21,19 +21,29 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  reporter: [
+    ['list'],
+    ['html', { outputFolder: 'playwright-report', open: 'never' }],
+  ],
+  outputDir: 'test-results/',
+  
   use: {
+
+    headless: true,
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    /* Collect trace when retrying the failed test. */
+    trace: 'on-first-retry',
+    
     /* Set a global timeout for each test */
     timeout: 60000,
     navigationTimeout: 90000, // 60 seconds timeout for each test
 
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-
-    /* Collect trace when retrying the failed test. */
-    trace: 'on-first-retry',
+  
   },
+   
 
   /* Configure projects for major browsers */
   projects: [
@@ -72,4 +82,6 @@ module.exports = defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
+
 
