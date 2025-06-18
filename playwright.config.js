@@ -29,9 +29,9 @@ module.exports = defineConfig({
   
   use: {
 
-    headless: true,
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    headless: false,
+    screenshot: 'on',
+    video: 'on',
     /* Collect trace when retrying the failed test. */
     trace: 'on-first-retry',
     
@@ -41,6 +41,9 @@ module.exports = defineConfig({
 
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
+    baseURL: 'https://www.reddit.com',
+    storageState: 'authState.json', // ✅ use saved session for all tests
+    
   
   },
    

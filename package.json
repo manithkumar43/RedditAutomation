@@ -2,7 +2,7 @@
   "name": "redditautomation",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {"test": "node utils/saveAuthIfExpired.js && npx playwright test"},
   "keywords": [],
   "author": "",
   "license": "ISC",
